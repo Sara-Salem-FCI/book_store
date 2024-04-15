@@ -12,7 +12,7 @@ class CustomAppBar extends StatelessWidget {
         children: [
           Image(image: AssetImage("assets/images/logo.png"), height: 30,),
           Spacer(),
-          Icon(Icons.search, size: 30, color: kInactiveColor,),
+          Icon(Icons.shopping_cart_rounded, size: 30, color: kInactiveColor,),
         ]
       ),
     );

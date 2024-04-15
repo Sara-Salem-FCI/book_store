@@ -1,7 +1,8 @@
+import 'package:bookly/core/utils/app_routers.dart';
 import 'package:bookly/core/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/assets.dart';
-import '../../../../home/presentation/views/home_view.dart';
 
 class SplashBody extends StatefulWidget {
   const SplashBody({super.key});
@@ -47,7 +48,8 @@ class _SplashBodyState extends State<SplashBody> with SingleTickerProviderStateM
   }
   void navigateToHome() {
     Future.delayed(const Duration(seconds: kTransitionDuration), () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()));
+      //Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeView()));
+      GoRouter.of(context).push(AppRouters.kHomeView);
     });
   }
 }
