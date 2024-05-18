@@ -5,7 +5,8 @@ abstract class ForYouBooksStates{}
 class ForYouBooksInitial extends ForYouBooksStates{}
 class LoadingForYouBooksState extends ForYouBooksStates{}
 class SuccessForYouBooksState extends ForYouBooksStates{
-  SuccessForYouBooksState(List<BookModel> books);
+  final List<BookModel> books;
+  SuccessForYouBooksState(this.books);
 }
 class FailureForYouBooksState extends ForYouBooksStates{
   final String errMessage;
