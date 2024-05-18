@@ -1,4 +1,8 @@
+import 'package:bookly/core/utils/constants.dart';
+import 'package:bookly/features/home/presentation/manager/for_you_books_cubit/for_you_books_cubit.dart';
+import 'package:bookly/features/home/presentation/manager/for_you_books_cubit/for_you_books_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'for_you_list_item.dart';
 
@@ -7,16 +11,28 @@ class ForYouList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.sizeOf(context).height * 0.2,
-      child: ListView.separated(
-        itemBuilder: (context, index) => const ForYouListItem(),
-        itemCount: 10,
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(width: 16);
-        },
-      ),
+    return BlocBuilder<ForYouBooksCubit,ForYouBooksStates>(
+      builder: (BuildContext context, state) {
+        if(state is SuccessForYouBooksState) {
+          return SizedBox(
+            height: MediaQuery.sizeOf(context).height * 0.2,
+            child: ListView.separated(
+              itemBuilder: (context, index) => const ForYouListItem(),
+              itemCount: 10,
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(width: 16);
+              },
+            ),
+          );
+        } else if(state is FailureForYouBooksState){
+          return Text(state.errMessage);
+        } else {
+          return const Center(child: CircularProgressIndicator(
+            color: kActiveColor,
+          ));
+        }
+      },
     );
   }
 }
