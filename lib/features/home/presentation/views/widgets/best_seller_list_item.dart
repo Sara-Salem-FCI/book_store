@@ -17,7 +17,7 @@ final BookModel book;
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: GestureDetector(
         onTap: () {
-          GoRouter.of(context).push(AppRouters.kBookDetailsView);
+          GoRouter.of(context).push(AppRouters.kBookDetailsView, extra: book);
         },
         child: Row(
           children: [

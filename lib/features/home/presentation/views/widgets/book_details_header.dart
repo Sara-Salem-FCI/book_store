@@ -1,12 +1,12 @@
+import 'package:bookly/features/home/data/models/book_model/BookModel.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/utils/constants.dart';
 import 'custom_button.dart';
 
 class BookDetailsHeader extends StatelessWidget {
-  const BookDetailsHeader({super.key});
-
+  const BookDetailsHeader({super.key, required this.book});
+final BookModel book;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -14,9 +14,14 @@ class BookDetailsHeader extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Text(
-              'Change by design',
-              style: AppStyles.activeStyle,
+            Expanded(
+              flex: 4,
+              child: Text(
+                book.volumeInfo!.title!,
+                style: AppStyles.activeStyle,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             const Spacer(),
             IconButton(
@@ -35,8 +40,8 @@ class BookDetailsHeader extends StatelessWidget {
             ),
           ],
         ),
-        const Text(
-          'Tim Brown',
+        Text(
+          book.volumeInfo!.authors![0],
           style: AppStyles.inActiveStyle,
         ),
         const SizedBox(
@@ -45,16 +50,16 @@ class BookDetailsHeader extends StatelessWidget {
         Row(
           children: [
             CustomButton(
-              text: 'Design',
+              text: book.volumeInfo!.pageCount.toString(),
               onPressed: () {},
             ),
             const SizedBox(
               width: 10,
             ),
-            CustomButton(
-              text: 'User Interface',
-              onPressed: () {},
-            ),
+            // CustomButton(
+            //   text: 'User Interface',
+            //   onPressed: () {},
+            // ),
           ],
         ),
       ],

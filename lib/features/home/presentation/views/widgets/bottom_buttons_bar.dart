@@ -26,7 +26,7 @@ class BottomButtonsBar extends StatelessWidget {
                     )
                 ),
                 child: Text(
-                  'ADD TO CARD',
+                  'Free',
                   style: AppStyles.activeStyle.copyWith(
                     fontWeight: FontWeight.w400,
                   ),
@@ -42,7 +42,7 @@ class BottomButtonsBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  'FREE PREVIEW',
+                  'PREVIEW',
                   style: AppStyles.inActiveStyle.copyWith(
                     color: kPrimaryColor,
                     fontWeight: FontWeight.bold,

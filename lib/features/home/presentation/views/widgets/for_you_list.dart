@@ -18,7 +18,7 @@ class ForYouList extends StatelessWidget {
             height: MediaQuery.sizeOf(context).height * 0.2,
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) => ForYouListItem(imagerUrl: state.books[index].volumeInfo!.imageLinks!.thumbnail!,),
+              itemBuilder: (context, index) => ForYouListItem(book: state.books[index],),
               itemCount: state.books.length,
               scrollDirection: Axis.horizontal,
               separatorBuilder: (BuildContext context, int index) {

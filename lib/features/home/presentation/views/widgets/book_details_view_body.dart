@@ -1,3 +1,4 @@
+import 'package:bookly/features/home/data/models/book_model/BookModel.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_details_header.dart';
 import 'package:bookly/features/home/presentation/views/widgets/bottom_buttons_bar.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_appbar.dart';
@@ -7,8 +8,8 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_styles.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
-  const BookDetailsViewBody({super.key});
-
+  const BookDetailsViewBody({super.key, required this.book});
+final BookModel book;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -23,13 +24,12 @@ class BookDetailsViewBody extends StatelessWidget {
                   const CustomAppBar(),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: width * 0.21),
-                    child: const ForYouListItem(imagerUrl: '',),
-                  ),
+                    child: ForYouListItem(book: book, ),),
                   const SizedBox(height: 20),
-                  const BookDetailsHeader(),
+                  BookDetailsHeader(book: book,),
                   const SizedBox(height: 20),
                   Text(
-                    'Adipiscing consectetur odio mollis sit ac blandit libero pharetra in. Tellus sed et enim, magna sit. Et tincidunt ut interdum aliquam vitae bibendum ultrices vel sed. Fames sit laoreet mi nibh lorem. Odio cras et senectus quam eget quam ante. Nisl at nunc at purus.',
+                    book.volumeInfo!.description!,
                     style: AppStyles.activeStyle.copyWith(
                       fontWeight: FontWeight.w400,
                       overflow: TextOverflow.clip,
