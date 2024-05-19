@@ -40,7 +40,7 @@ final BookModel book;
             ),
           ),
         ),
-        const BottomButtonsBar(),
+        BottomButtonsBar(book: book,),
       ],
     );
   }

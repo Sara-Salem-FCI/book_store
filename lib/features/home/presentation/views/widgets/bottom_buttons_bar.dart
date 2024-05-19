@@ -1,10 +1,14 @@
+import 'package:bookly/features/home/data/models/book_model/BookModel.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/utils/constants.dart';
 
 class BottomButtonsBar extends StatelessWidget {
-  const BottomButtonsBar({super.key});
+  const BottomButtonsBar({super.key, required this.book});
+
+  final BookModel book;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +27,7 @@ class BottomButtonsBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                     borderSide: const BorderSide(
                       color: kActiveColor,
-                    )
-                ),
+                    )),
                 child: Text(
                   'Free',
                   style: AppStyles.activeStyle.copyWith(
@@ -37,12 +40,21 @@ class BottomButtonsBar extends StatelessWidget {
             Expanded(
               child: MaterialButton(
                 color: kActiveColor,
-                onPressed: () {},
+                onPressed: () async {
+                  if (!await launchUrl(
+                          Uri.parse(book.volumeInfo!.previewLink!)) ||
+                      book.volumeInfo?.previewLink == null) {
+                  } else {
+                    await launchUrl(Uri.parse(book.volumeInfo!.previewLink!));
+                  }
+                },
                 shape: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  'PREVIEW',
+                  book.volumeInfo?.previewLink == null
+                      ? 'Not Available'
+                      : 'PREVIEW',
                   style: AppStyles.inActiveStyle.copyWith(
                     color: kPrimaryColor,
                     fontWeight: FontWeight.bold,
